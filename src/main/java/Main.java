@@ -13,7 +13,7 @@ public class Main {
         if (file.exists()) {
             main.creacionRepositorio(token);
         } else {
-
+            main.escribirElToken(token);
             main.creacionRepositorio(token);
         }
     }
@@ -39,6 +39,19 @@ public class Main {
         }
     }
 
-
-
+    public  void escribirElToken(String fichero){
+        try {
+            fileW = new FileWriter(fichero, false);
+            printW.println(fichero);
+            printW.println("OAuth="+ JOptionPane.showInputDialog(" token ??")); //Crea archivo
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }finally {
+            try {
+                fileW.close(); //se cierra el archivo
+            } catch (IOException e) {
+                System.out.println("no se pudo cerrar el archivo");
+            }
+        }
+    }
 }
